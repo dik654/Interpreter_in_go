@@ -7,6 +7,21 @@ import (
 	"monkey/token"
 )
 
+type Lexer struct {
+	input string
+	// 현재 문자
+	position int
+	// 현재 다음 문자
+	readPosition int
+	// 현재 조사중인 문자
+	ch byte
+}
+
+func New(input string) *Lexer {
+	l := Lexer{input: input}
+	return l
+}
+
 func TestNextToken(t *testing.T) {
 	input := `=+(){},;`
 	// 테스트할 타입과 예상하는 결과값을 갖는 구조체 생성
