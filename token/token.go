@@ -7,6 +7,19 @@ type Token struct {
 	Literal string
 }
 
+var keywords = map[string]TokenType{
+	"fn":  FUNCTION,
+	"let": LET,
+}
+
+func LookupIdent(ident string) TokenType {
+	// 키워드를 보고 예약어인지 체크
+	if tok, ok := keywords[ident]; ok {
+		return tok
+	}
+	return IDENT
+}
+
 const (
 	// 렉서가 토큰, 문자를 알 수 없다
 	ILLEGAL = "ILLEGAL"
